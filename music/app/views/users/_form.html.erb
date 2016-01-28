@@ -1,0 +1,20 @@
+<% submission_path = user.persisted? ? user_url(user) : users_url %>
+<% request_method  = user.persisted? ? "patch"        : "post" %>
+<% button_text     = user.persisted? ? "Save changes" : "Sign me up!" %>
+
+
+<form action="<%= submission_path %>" method="post">
+  <input type="hidden" name="_method" value="<%= request_method %>">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+  <label for="user[email]">Email address:</label>
+  <input type="text" name="user[email]" value="<%= @user.email %>">
+  <br />
+
+  <label for="user[password]">Password:</label>
+  <input type="password" name="user[password]" value="">
+  <br />
+
+  <input type="submit" value="<%= button_text %>">
+
+</form>
