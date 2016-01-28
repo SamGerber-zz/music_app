@@ -1,0 +1,13 @@
+<h1>All the Bands!</h1>
+<table>
+  <% @bands.each do |band| %>
+  <tr>
+    <td><%= band.name %></td>
+    <td><%#= link_to band.name, band_albums_url(band)  %></td>
+    <td><%= button_to "Edit Band", edit_band_path(band), method: :get %></td>
+    <td><%= button_to "Delete Band", band_path(band), method: :delete %></td>
+  </tr>
+  <% end %>
+</table>
+
+<%= button_to "New Band", new_band_path, method: :get %>
