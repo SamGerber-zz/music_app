@@ -1,0 +1,10 @@
+<% submission_path = logged_in? ? session_url   : new_session_url %>
+<% request_method  = logged_in? ? "delete"      : "get" %>
+<% button_text     = logged_in? ? "Log me out!" : "Log me in!" %>
+
+<form action="<%= submission_path %>" method="post">
+  <input type="hidden" name="_method" value="<%= request_method %>">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+  <input type="submit" value="<%= button_text %>">
+</form>
