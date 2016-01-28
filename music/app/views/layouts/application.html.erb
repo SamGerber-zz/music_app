@@ -1,15 +1,21 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Music</title>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+  <head>
+    <title>Music</title>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
 
-<%= render "layouts/errors" if flash[:errors] %>
-<%= render "layouts/notifications" if flash[:notifications] %>
+    <div>
+      <%= render "layouts/nav_pill" unless @disable_nav_pill%>
+    </div>
 
-<%= yield %>
+    <%= render "layouts/errors" if flash[:errors] %>
+    <%= render "layouts/notifications" if flash[:notifications] %>
 
-</body>
+    <%= yield %>
+
+
+
+  </body>
 </html>
