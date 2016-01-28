@@ -7,5 +7,6 @@ class Album < ActiveRecord::Base
   validates :venue, inclusion: { in: VENUES.keys }
 
   belongs_to :band
-  has_many: :tracks
+
+  has_many :tracks
 end
