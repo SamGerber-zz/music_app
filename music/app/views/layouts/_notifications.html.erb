@@ -1,0 +1,11 @@
+<h4>Messages:</h4>
+
+<ul>
+  <% flash[:notifications].each do |notification| %>
+    <li><%= notification %></li>
+  <% end %>
+  
+  <% flash.now[:notifications].each do |notification| %>
+    <li><%= notification %></li>
+  <% end %>
+</ul>
