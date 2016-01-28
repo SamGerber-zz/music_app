@@ -12,8 +12,8 @@
 
 class User < ActiveRecord::Base
   validates :email, :session_token, presence: true, uniqueness: true
-  # validates :password_digest, presence: { message: "Password can't be blank" }
-  validates :password, presence: true, length: { minimum: 6, allow_nil: true }
+  validates :password_digest, presence: { message: "Password can't be blank" }
+  validates :password, length: { minimum: 6, allow_nil: true }
 
   after_initialize :ensure_session_token
 
@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
   # Fetches a user by email and password, returning nil when none are found
   def self.find_by_credentials(email:, password:)
     user = User.find_by(email: email)
-    return user if user.exists? && user.is_password?(password)
+    return user if user && user.is_password?(password)
   end
 
   attr_reader :password
@@ -33,12 +33,13 @@ class User < ActiveRecord::Base
   # Sets a new session_token
   def reset_session_token!
     self.session_token = User.generate_session_token
+    self.save!
     session_token
   end
 
   # If the user does not yet have a session_token, one is generated
   def ensure_session_token
-    reset_session_token! unless session_token
+    self.session_token ||= User.generate_session_token
   end
 
   # Creates password digest
