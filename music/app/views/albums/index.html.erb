@@ -1,9 +1,16 @@
 <h1><%= @band.name %>'s Discography!</h1>
+
+<table>
+  <tr>
+    <td> <%= button_to "Edit Band", edit_band_path(@band), method: :get %> </td>
+    <td> <%= button_to "Delete Band", band_path(@band), method: :delete %> </td>
+  </tr>
+</table>
+<br/>
 <table>
   <% @albums.each do |album| %>
   <tr>
-    <td><%= album.title %></td>
-    <td><%#= link_to album.title, album_tracks_url(album)  %></td>
+    <td><%= link_to album.title, album_tracks_url(album)  %></td>
     <td><%= button_to "Edit Album", edit_album_path(album), method: :get %></td>
     <td><%= button_to "Delete Album", album_path(album), method: :delete %></td>
   </tr>
