@@ -6,14 +6,14 @@
   <input type="hidden" name="_method" value="<%= request_method %>">
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
 
-  <label for="album[name]">Album Title:</label>
-  <input type="text" name="album[name]" value="<%= album.title %>">
+  <label for="album[title]">Album Title:</label>
+  <input type="text" name="album[title]" value="<%= album.title %>">
   <br />
 
   <label for="album[band_id]">Band:</label>
   <select name="album[band_id]">
     <% Band.all.each do |band| %>
-      <option value="<%= band.id %>"<%= Q(checked="checked") if band == @album.band %>><%= band.name %></option>
+      <option value="<%= band.id %>"<%= %Q(selected="selected") if band == album.band %>><%= band.name %></option>
     <% end %>
   </select>
   <br />
@@ -21,7 +21,7 @@
   <label for="album_venues">Venue:</label>
     <% Album::VENUES.each do |value, venue| %>
       <label for="album_venues_<%= value %>"><%= venue %></label>
-      <input type="radio" name="album_venues_<%= value %>" id="album_venues" value="<%= value %>" <%= %Q(checked) if value == @album.venue %>>
+      <input type="radio" name="album[venue]" id="album_venues_<%= value %>" value="<%= value %>" <%= %Q(checked) if value == @album.venue %>>
     <% end %>
   <br />
 
