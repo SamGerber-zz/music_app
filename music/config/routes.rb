@@ -5,4 +5,6 @@ Rails.application.routes.draw do
     resources :albums, only: [:new, :index]
   end
   resources :albums, only: [:create, :edit, :show, :update, :destroy]
+
+  root 'bands#index'
 end
