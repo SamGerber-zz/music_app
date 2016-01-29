@@ -1,0 +1,22 @@
+<h1><%= @album.title %> by <%= @album.band.name %></h1>
+
+<table>
+  <tr>
+    <td> <%= button_to "Edit album", edit_album_path(@album), method: :get %> </td>
+    <td> <%= button_to "Delete album", album_path(@album), method: :delete %> </td>
+  </tr>
+</table>
+<br/>
+<h4>Tracks: </h4>
+<table>
+  <% @album.tracks.order(:id).each.with_index do |track, index| %>
+  <tr>
+    <td><%= index + 1  %></td>
+    <td><%= link_to track.name, track_url(track)  %></td>
+    <td><%= button_to "Edit Track", edit_track_path(track), method: :get %></td>
+    <td><%= button_to "Delete Track", track_path(track), method: :delete %></td>
+  </tr>
+  <% end %>
+</table>
+
+<%= button_to "Return to #{@album.band.name}'s' discography", band_path(@album.band), method: :get %>
