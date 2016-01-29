@@ -23,7 +23,9 @@ class User < ActiveRecord::Base
   end
 
   # Fetches a user by email and password, returning nil when none are found
-  def self.find_by_credentials(email:, password:)
+  def self.find_by_credentials(credentials)
+    email    = credentials["email"]
+    password = credentials["password"]
     user = User.find_by(email: email)
     return user if user && user.is_password?(password)
   end
