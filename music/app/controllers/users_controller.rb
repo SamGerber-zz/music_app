@@ -32,17 +32,11 @@ class UsersController < ApplicationController
     if @user.save
       log_in!(@user)
       flash[:notifications] = ["Hello, #{@user.email}! Welcome to Music!"]
-      redirect_to user_url(@user)
+      redirect_to bands_url
     else
       flash.now[:errors] = @user.errors.full_messages
       render :new
     end
   end
 
-
-  protected
-
-  def user_params
-    params.require(:user).permit(:email, :password, :session_token)
-  end
 end
