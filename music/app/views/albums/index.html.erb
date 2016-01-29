@@ -1,0 +1,13 @@
+<h1><%= @band.name %>'s Discography!</h1>
+<table>
+  <% @albums.each do |album| %>
+  <tr>
+    <td><%= album.title %></td>
+    <td><%#= link_to album.title, album_tracks_url(album)  %></td>
+    <td><%= button_to "Edit Album", edit_album_path(album), method: :get %></td>
+    <td><%= button_to "Delete Album", album_path(album), method: :delete %></td>
+  </tr>
+  <% end %>
+</table>
+
+<%= button_to "Submit New Album for #{@band.name}", new_band_album_path(@band), method: :get %>
