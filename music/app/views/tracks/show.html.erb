@@ -1,0 +1,17 @@
+<h1><%= @track.name %></h1>
+<h3>Band: <%= link_to @track.band.name, band_url(@track.band) %></h3>
+<h4>Album: <%= link_to @track.album.title, album_url(@track.album) %></h4>
+<br>
+<table>
+  <tr>
+    <td> <%= button_to "Edit Track", edit_track_path(@track), method: :get %> </td>
+    <td> <%= button_to "Delete Track", track_path(@track), method: :delete %> </td>
+  </tr>
+</table>
+
+
+<br/>
+<% @track.lyrics.split("\n\n").each do |chorus| %>
+  <p><%= chorus %></p>
+<% end  %>
+<%= link_to "<<Back to: #{@track.album.title}", album_url(@track.album) %>
